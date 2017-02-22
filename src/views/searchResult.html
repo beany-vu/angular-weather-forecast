@@ -1,0 +1,27 @@
+<div class="col-lg-12 block-search-result">
+	<hr>
+	<h2>Results</h2>
+</div>
+<div class="col-lg-12 animated fadeIn" ng-if="cities.length > 0 && myError.citiesSearch.length == 0">
+	<div class="alert alert-success">Found {{cities.length}} result&#40;s&#41; </div>
+	<table class="table table-striped search-result-list">
+		<tr>
+			<th>Order</th>
+			<th>Location</th>
+		</tr>
+		<tr id="city{{$index}}" ng-repeat="city in cities">
+			<td>{{$index+1}}</td>
+			<td class="city-name" ng-click="updateMap($index, city.geometry.location.lat, city.geometry.location.lng )">{{city.formatted_address}}</td>
+		</tr>
+	</table>
+</div>
+
+<div class="col-lg-12 animated fadeIn" ng-if="cities.length == 0">
+	<div class="alert alert-warning">Please search for a location!</div>
+</div>
+<div class="col-lg-12 animated fadeIn" ng-if="getCodeLoading === true">
+	<div class="alert alert-info">Loading</div>
+</div>
+<div class="col-lg-12 animated fadeIn" ng-if="myError.citiesSearch.length > 0">
+	<div class="alert alert-danger">{{myError.citiesSearch}}</div>
+</div>

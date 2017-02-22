@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Sutunam Weather Forecast</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons-wind.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css">
+	<link rel="stylesheet" href="assets/css/styles.css">
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB188arA6DgkuIaDG1tszq9XufFmjrcxR8"></script>
+	<script src="https://cdn.rawgit.com/googlemaps/v3-utility-library/master/infobox/src/infobox.js"></script>
+</head>
+<body>
+	<div ng-app="weatherForecast" ng-controller="mapCtrl" class="animated fadeIn">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="col-lg-3">
+					<search-box-directive></search-box-directive>
+					<search-result-directive></search-result-directive>
+				</div>
+				<div class="col-lg-9">
+					<map-directive></map-directive>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="app.js"></script>
+	<script src="src/services/darkSkyService.js"></script>
+	<script src="src/services/geoCodeService.js"></script>
+	<script src="src/directives/myNgEnterDirective.js"></script>
+	<script src="src/directives/todayInfoDirective.js"></script>
+	<script src="src/directives/searchBoxDirective.js"></script>
+	<script src="src/directives/searchResultDirective.js"></script>
+	<script src="src/directives/mapDirective.js"></script>
+	<script src="src/controllers/mapController.js"></script>
+</body>
+</html>

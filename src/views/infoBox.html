@@ -1,0 +1,71 @@
+<div class="tab-popup animated fadeIn" id="tab-popup">
+	<ul class="nav nav-tabs" role="tablist">
+		<li role="presentation" class="active">
+			<a href="#today" aria-controls="home" role="tab" data-toggle="tab">Today</a></li>
+		<li role="presentation"><a href="#hourly" aria-controls="profile" role="tab" data-toggle="tab">Hourly</a></li>
+		<li role="presentation"><a href="#in5days" aria-controls="messages" role="tab" data-toggle="tab">5 days</a></li>
+	</ul>
+	<div class="tab-content">
+		<div role="tabpanel" class="tab-pane tab-today active animated fadeIn" id="today">
+			<div class="detail-content" ng-if="darkSkyInforLoading === true">
+				<p>Loading</p>
+			</div>
+			<div class="detail-content" ng-if="darkSkyInforLoading === false">
+				<div class="weather-info-today">
+					<div class="row">
+						<div class="col-lg-12">
+							<p class="info-highlight">{{city.darkSkyInfor.daily.data[0].summary}}</p>
+						</div>
+						<div class="row">
+							<div class="col-lg-12">
+								<p class="info-visual-icon"><i class="wi ico-{{city.darkSkyInfor.currently.icon}}"></i></p>
+							</div>
+							<div class="col-lg-6">
+								<p class="info-max-temp"><i class="wi wi-direction-up"></i>
+									<span>{{city.darkSkyInfor.daily.data[0].temperatureMax}}&deg;C</span></p>
+							</div>
+							<div class="col-lg-6">
+								<p class="info-min-temp"><i class="info-min-temp wi wi-direction-down"></i>
+									<span>{{city.darkSkyInfor.daily.data[0].temperatureMin}}&deg;C</span></p>
+							</div>
+							<div class="col-lg-12">
+								<p class="info-current-temp"><span>Currently: {{city.darkSkyInfor.currently.temperature}}&deg;C</span></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div role="tabpanel" class="tab-pane tab-hourly animated fadeIn" id="hourly">
+			<div class="detail-content" ng-if="darkSkyInforLoading === true">
+				<p>Loading</p>
+			</div>
+			<table class=" table table-striped" ng-if="darkSkyInforLoading === false">
+				<tr ng-repeat="info in city.darkSkyInfor.hourly.data | limitTo:24">
+					<td>{{$index}}:00</td>
+					<td><span><i class="wi ico-{{info.icon}}"></i></span></td>
+					<td><span>{{info.temperature}}</span></td>
+				</tr>
+			</table>
+		</div>
+		<div role="tabpanel" class="tab-pane tab-in5days animated fadeIn" id="in5days">
+			<div class="detail-content" ng-if="darkSkyInforLoading === true">
+				<p>Loading</p>
+			</div>
+			<table class=" table table-striped" ng-if="darkSkyInforLoading === false">
+				<tr>
+					<th>Day</th>
+					<th>Feel</th>
+					<th>Max temp</th>
+					<th>Min temp</th>
+				</tr>
+				<tr ng-repeat="info in city.darkSkyInfor.daily.data | limitTo:5">
+					<td>{{info.time * 1000 | date:'EEE' }}</td>
+					<td><span><i class="wi ico-{{info.icon}}"></i></span></td>
+					<td><span>{{info.temperatureMax}}&deg;C</span></td>
+					<td><span>{{info.temperatureMin}}&deg;C</span></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
