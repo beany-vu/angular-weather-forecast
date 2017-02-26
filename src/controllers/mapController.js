@@ -33,6 +33,7 @@ app.controller('mapCtrl',['$scope', '$http', 'darkSkySvr', 'geoCodeSrv',  '$comp
                 $scope.cities = [];
                 if (typeof $scope.query !== "undefined") {
                     if($scope.query !== '') {
+                        ga('send', 'event', 'Weather Forecast', 'search', 'Location', $scope.query);
                         $scope.getCodeLoading = true;
                         geoCodeSrv($scope.query).then(
                             function (response) {
@@ -67,9 +68,11 @@ app.controller('mapCtrl',['$scope', '$http', 'darkSkySvr', 'geoCodeSrv',  '$comp
             $scope.reset = function () {
                 $scope.cities = [];
                 $scope.removeMarkers();
+                $scope.removeInfoBoxes();
                 $scope.query = '';
             },
             $scope.updateMap = function (index,lat, lng) {
+                ga('send', 'event', 'Weather Forecast', 'view_result', 'Location', $scope.cities[index].formatted_address);
                 var loc, marker;
                 if (arguments.length == 0) {
                     // create a location
